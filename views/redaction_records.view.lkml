@@ -49,7 +49,7 @@ view: redaction_records {
 
   measure: total_redactions {
     type: count
-    drill_fields: [redaction_uuid, redaction_type, sensitivity_level]
+    drill_fields: [redaction_uuid, message_uuid , redaction_type,confidence_score,is_pii, sensitivity_level]
     description: "Total number of redaction events."
   }
 
@@ -57,6 +57,7 @@ view: redaction_records {
     type: count
     filters: [is_pii: "yes"]
     description: "Total number of records marked as PII."
+    drill_fields: [redaction_uuid, message_uuid , redaction_type,confidence_score, sensitivity_level]
   }
 
   measure: non_pii_redactions {
@@ -70,6 +71,7 @@ view: redaction_records {
     sql: SAFE_DIVIDE(${pii_redactions}, NULLIF(${total_redactions}, 0)) ;;
     value_format_name: "percent_2"
     description: "Percentage of redactions identified as PII."
+    drill_fields: [redaction_uuid, message_uuid , redaction_type,confidence_score, sensitivity_level]
   }
 
   measure: avg_confidence {
@@ -95,6 +97,10 @@ view: redaction_records {
     sql: SAFE_DIVIDE(${total_redacted_values}, NULLIF(${total_original_values}, 0)) ;;
     value_format_name: "percent_2"
     description: "Ratio of redacted values to original values."
+    # link: {
+    #   label: "Drill to Filtered Details"
+    #   url: "https://springmllook.cloud.looker.com/explore/hca_hl7_deid_validation/redaction_records?fields=redaction_messages.message_id,redaction_messages.message_score&f[redaction_messages.message_score]=%3E%3D0.8&sorts=redaction_messages.message_id&limit=500&column_limit=50&origin=share-expanded"
+    # }
+    drill_fields: [redaction_uuid, message_uuid , redaction_type,confidence_score, sensitivity_level]
   }
-
 }

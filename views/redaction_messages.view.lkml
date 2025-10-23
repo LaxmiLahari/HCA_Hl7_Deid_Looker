@@ -14,8 +14,9 @@ view: redaction_messages {
 
   dimension: message_score {
     type: number
-    value_format_name: "decimal_2"
+    # value_format_name: "decimal_2"
     description: "Overall score for the message (e.g., validation or DLP score)."
+    value_format_name: "percent_2"
   }
 
   measure: total_messages {
@@ -27,6 +28,12 @@ view: redaction_messages {
     type: average
     sql: ${message_score} ;;
     description: "Average score of all processed messages."
+    # link: {
+    #   label: "View Confidence score for each Messages"
+    #   url: "/looks/19"
+    # }
+    drill_fields: [message_id, message_score]
+    value_format_name: "percent_2"
   }
 
   measure: high_score_messages {
