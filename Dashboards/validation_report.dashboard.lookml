@@ -11,7 +11,7 @@
     title: "Rule Name"
     type: field_filter
     default_value: ""
-    model: hin_lakehouse
+    model: hca_hl7_deid_validation
     explore: validation_records
     field: validation_records.rule_name
 
@@ -19,7 +19,7 @@
     title: "Status"
     type: field_filter
     default_value: ""
-    model: hin_lakehouse
+    model: hca_hl7_deid_validation
     explore: validation_records
     field: validation_records.status
 
@@ -27,7 +27,7 @@
     title: "Validation Date"
     type: date_filter
     default_value: 30 days
-    model: hin_lakehouse
+    model: hca_hl7_deid_validation
     explore: validation_records
     field: validation_records.created_date
 
@@ -37,7 +37,7 @@
   - name: total_records
     title: "Total Records Validated"
     type: single_value
-    model: hin_lakehouse
+    model: hca_hl7_deid_validation
     explore: validation_records
     query:
       fields: [validation_records.total_records]
@@ -49,7 +49,7 @@
   - name: failed_records
     title: "Failed Records"
     type: single_value
-    model: hin_lakehouse
+    model: hca_hl7_deid_validation
     explore: validation_records
     query:
       fields: [validation_records.failed_records]
@@ -61,7 +61,7 @@
   - name: pass_rate
     title: "Pass Rate (%)"
     type: single_value
-    model: hin_lakehouse
+    model: hca_hl7_deid_validation
     explore: validation_records
     query:
       fields: [validation_records.pass_rate]
@@ -73,7 +73,7 @@
   - name: failures_by_rule
     title: "Failures by Rule"
     type: looker_bar
-    model: hin_lakehouse
+    model: hca_hl7_deid_validation
     explore: validation_records
     query:
       fields: [validation_records.rule_name, validation_records.failed_records]
@@ -89,7 +89,7 @@
   - name: failure_trend
     title: "Failure Trend Over Time"
     type: looker_line
-    model: hin_lakehouse
+    model: hca_hl7_deid_validation
     explore: validation_records
     query:
       fields: [validation_records.created_date, validation_records.failed_records]
@@ -102,7 +102,7 @@
   - name: failure_table
     title: "Detailed Failure Records"
     type: looker_table
-    model: hin_lakehouse
+    model: hca_hl7_deid_validation
     explore: validation_records
     query:
       fields: [
