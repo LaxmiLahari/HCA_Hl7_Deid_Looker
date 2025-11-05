@@ -1,4 +1,3 @@
----
 - dashboard: validation_report
   title: "Validation Report"
   layout: newspaper
